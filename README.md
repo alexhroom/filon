@@ -1,5 +1,5 @@
 # filon
-Implementation of Filon quadrature in Rust (as [filon]((https://crates.io/crates/filon))) and Python (as [pyfilon](https://pypi.org/project/pyfilon))
+Implementation of Filon quadrature in Rust (as [filon](https://crates.io/crates/filon)) and Python (as [pyfilon](https://pypi.org/project/pyfilon))
 
 [![crates.io](https://img.shields.io/crates/v/filon?logo=rust&style=flat-square)](https://crates.io/crates/filon)
 [![PyPI](https://img.shields.io/pypi/v/pyfilon.svg?logo=python&style=flat-square)](https://pypi.org/project/pyfilon)
