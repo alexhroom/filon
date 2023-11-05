@@ -22,15 +22,7 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
 name = "filon"
-version = "0.1.0"
-
-[[package]]
-name = "filon_py"
-version = "0.1.0"
-dependencies = [
- "filon",
- "pyo3",
-]
+version = "1.0.0"
 
 [[package]]
 name = "indoc"
@@ -99,6 +91,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "134c189feb4956b20f6f547d2cf727d4c0fe06722b20a0eec87ed445a97f92da"
 dependencies = [
  "unicode-ident",
+]
+
+[[package]]
+name = "pyfilon"
+version = "1.0.0"
+dependencies = [
+ "filon",
+ "pyo3",
 ]
 
 [[package]]

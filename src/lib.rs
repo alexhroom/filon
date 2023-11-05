@@ -21,7 +21,7 @@ fn filon_tab_cos(ftab: Vec<f64>, a: f64, b: f64, cos_coeff: f64) -> PyResult<f64
 
 /// A Python module implemented in Rust.
 #[pymodule]
-fn filon(_py: Python, m: &PyModule) -> PyResult<()> {
+fn pyfilon(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(filon_tab_sin, m)?)?;
     m.add_function(wrap_pyfunction!(filon_tab_cos, m)?)?;
     Ok(())
