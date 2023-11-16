@@ -1,5 +1,9 @@
 # filon
-Implementation of Filon quadrature in Rust and Python.
+Implementation of Filon quadrature in Rust (as [filon](https://crates.io/crates/filon)) and Python (as [pyfilon](https://pypi.org/project/pyfilon))
+
+[![crates.io](https://img.shields.io/crates/v/filon?logo=rust&style=flat-square)](https://crates.io/crates/filon)
+[![PyPI](https://img.shields.io/pypi/v/pyfilon.svg?logo=python&style=flat-square)](https://pypi.org/project/pyfilon)
+
 
 The Filon quadrature is a quadrature for highly oscillatory
 integrals, such as $\int_a^b f(x) sin(mx)$ or $\int_a^b f(x) cos(mx)$.
