@@ -15,3 +15,5 @@ dynamic = ["version"]
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
+python-source = "filon-py"
+module-name = "pyfilon.pyfilon"

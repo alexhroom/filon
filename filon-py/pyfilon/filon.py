@@ -3,7 +3,7 @@ from typing import Callable
 
 from numpy import linspace
 
-from filon import filon_tab_sin, filon_tab_cos
+from pyfilon.pyfilon import filon_tab_sin, filon_tab_cos
 
 def filon_fun_sin(func: Callable, a: float, b: float, sin_coeff: float, mesh_size: int) -> float:
     ftab = [func(x) for x in linspace(a, b, mesh_size)]

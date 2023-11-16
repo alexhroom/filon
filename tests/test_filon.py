@@ -1,6 +1,6 @@
 """Tests the Filon quadrature algorithm."""
 
-from filon_py import filon_fun_sin, filon_fun_cos
+from pyfilon import filon_fun_sin, filon_fun_cos
 
 import numpy as np
 import pytest
