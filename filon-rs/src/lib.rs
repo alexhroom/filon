@@ -1,5 +1,6 @@
 use std::io::Error;
 use std::io::ErrorKind;
+use num_complex::Complex;
 
 /// FILON algorithms for oscillatory quadrature, adapted from John Burkardt:
 /// https://people.math.sc.edu/Burkardt/cpp_src/filon/filon.cpp
@@ -42,9 +43,9 @@ use std::io::ErrorKind;
 ///   sin_coeff: f64
 ///     the coefficient of sin; 'm' in sin(mx)
 ///
-pub fn filon_tab_sin(ftab: Vec<f64>, a: f64, b: f64, sin_coeff: f64) -> Result<f64, Error> {
+pub fn filon_tab_sin(ftab: Vec<Complex<f64>>, a: f64, b: f64, sin_coeff: f64) -> Result<Complex<f64>, Error> {
     if a == b {
-        return Ok(0.0)
+        return Ok(Complex::new(0.0, 0.0))
     }
 
     let mesh_size: usize = ftab.len();
@@ -60,11 +61,11 @@ pub fn filon_tab_sin(ftab: Vec<f64>, a: f64, b: f64, sin_coeff: f64) -> Result<f
 
     let (alpha, beta, gamma) = calculate_abg(&theta);
 
-    let s2n: f64 = (0..ftab.len()).step_by(2).map(|x| ftab[x] * sintab[x]).sum::<f64>()
+    let s2n: Complex<f64> = (0..ftab.len()).step_by(2).map(|x| ftab[x] * sintab[x]).sum::<Complex<f64>>()
                - 0.5*(ftab[ftab.len()-1]*sintab[ftab.len()-1] + ftab[0]*sintab[0]);
-    let s2nm1: f64 = (1..ftab.len()-1).step_by(2).map(|x| ftab[x] * sintab[x]).sum::<f64>();
+    let s2nm1: Complex<f64> = (1..ftab.len()-1).step_by(2).map(|x| ftab[x] * sintab[x]).sum::<Complex<f64>>();
 
-    let output: f64 = h * (
+    let output: Complex<f64> = h * (
         alpha * ((ftab[0] * (sin_coeff*a).cos()) - (ftab[ftab.len()-1] * (sin_coeff*b).cos()))
         + beta * s2n
         + gamma * s2nm1
@@ -84,9 +85,9 @@ pub fn filon_tab_sin(ftab: Vec<f64>, a: f64, b: f64, sin_coeff: f64) -> Result<f
 ///   cos_coeff: f64
 ///     the coefficient of cos; 'm' in cos(mx)
 ///
-pub fn filon_tab_cos(ftab: Vec<f64>, a: f64, b: f64, cos_coeff: f64) -> Result<f64, Error> {
+pub fn filon_tab_cos(ftab: Vec<Complex<f64>>, a: f64, b: f64, cos_coeff: f64) -> Result<Complex<f64>, Error> {
     if a == b {
-        return Ok(0.0)
+        return Ok(Complex::new(0.0, 0.0))
     }
 
     let mesh_size: usize = ftab.len();
@@ -102,11 +103,11 @@ pub fn filon_tab_cos(ftab: Vec<f64>, a: f64, b: f64, cos_coeff: f64) -> Result<f
 
     let (alpha, beta, gamma) = calculate_abg(&theta);
 
-    let c2n: f64 = (0..ftab.len()).step_by(2).map(|x| ftab[x] * costab[x]).sum::<f64>()
+    let c2n: Complex<f64> = (0..ftab.len()).step_by(2).map(|x| ftab[x] * costab[x]).sum::<Complex<f64>>()
           - 0.5*(ftab[ftab.len()-1]*costab[ftab.len()-1] + ftab[0]*costab[0]);
-    let c2nm1: f64 = (1..ftab.len()-1).step_by(2).map(|x| ftab[x] * costab[x]).sum::<f64>();
+    let c2nm1: Complex<f64> = (1..ftab.len()-1).step_by(2).map(|x| ftab[x] * costab[x]).sum::<Complex<f64>>();
 
-    let output: f64 = h * (
+    let output: Complex<f64> = h * (
         alpha * ((ftab[ftab.len()-1] * (cos_coeff*b).sin()) - (ftab[0] * (cos_coeff*a).sin()))
         + beta * c2n
         + gamma * c2nm1

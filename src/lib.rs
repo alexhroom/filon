@@ -1,9 +1,10 @@
 use pyo3::prelude::*;
 use pyo3::exceptions::PyValueError;
+use num_complex::Complex;
 extern crate filon as filon_rs;
 
 #[pyfunction]
-fn filon_tab_sin(ftab: Vec<f64>, a: f64, b: f64, sin_coeff: f64) -> PyResult<f64> {
+fn filon_tab_sin(ftab: Vec<Complex<f64>>, a: f64, b: f64, sin_coeff: f64) -> PyResult<Complex<f64>> {
     match filon_rs::filon_tab_sin(ftab, a, b, sin_coeff) {
         Ok(result) => Ok(result),
         Err(error) => Err(PyValueError::new_err(error.to_string()))
@@ -11,7 +12,7 @@ fn filon_tab_sin(ftab: Vec<f64>, a: f64, b: f64, sin_coeff: f64) -> PyResult<f64
 }
 
 #[pyfunction]
-fn filon_tab_cos(ftab: Vec<f64>, a: f64, b: f64, cos_coeff: f64) -> PyResult<f64> {
+fn filon_tab_cos(ftab: Vec<Complex<f64>>, a: f64, b: f64, cos_coeff: f64) -> PyResult<Complex<f64>> {
     match filon_rs::filon_tab_cos(ftab, a, b, cos_coeff) {
         Ok(result) => Ok(result),
         Err(error) => Err(PyValueError::new_err(error.to_string()))
