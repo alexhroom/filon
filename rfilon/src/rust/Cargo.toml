@@ -1,0 +1,13 @@
+[package]
+name = 'rfilon'
+version = '1.0.0'
+edition = '2021'
+
+[lib]
+crate-type = [ 'staticlib' ]
+name = 'rfilon'
+
+[dependencies]
+extendr-api = {version = "0.6.0", features = ["num-complex"]}
+num-complex = "0.4.4"
+filon = {path = "../../../filon-rs"}

@@ -1,0 +1,19 @@
+LIBDIR = rust/target/release
+STATLIB = $(LIBDIR)/librfilon.a
+PKG_CFLAGS = -pthread
+PKG_LIBS = -L$(LIBDIR) -lrfilon -lresolv -pthread
+CARGOTMP=$(PWD)/.cargo
+export CARGO_HOME=$(CARGOTMP)
+
+#all: clean
+
+$(SHLIB): $(STATLIB)
+
+$(STATLIB):
+	echo `cargo --version` && echo `rustc --version`
+	PATH="${PATH}:${HOME}/.cargo/bin" cargo build --release --manifest-path=rust/Cargo.toml
+	rm -Rf $(LIBDIR)/build || true
+	rm -Rf $(CARGO_HOME) || true
+
+clean:
+	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS) rust/target

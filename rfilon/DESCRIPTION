@@ -1,0 +1,17 @@
+Package: rfilon
+Title: Filon quadrature in R
+Version: 1.0.0
+Authors@R: c(person("Alex H.", "Room",
+                    role = c("aut", "cre", "cph"),
+                    email = "alex.room@btinternet.com",
+                    comment = c(ORCID = "0000-0002-5314-2331")),
+              person(given = "The authors of the dependency Rust crates",
+                     role = c("ctb")))
+Description:
+  This is a package for performing Filon quadrature (highly oscillatory
+  quadrature on bounded intervals) in R.
+SystemRequirements: Rust tool chain w/ cargo, libclang/llvm-config
+Encoding: UTF-8
+LazyData: true
+Config/rextendr/version: 0.3.1
+RoxygenNote: 7.3.1
