@@ -3,3 +3,6 @@
 export(filon_fun_cos)
 export(filon_fun_iexp)
 export(filon_fun_sin)
+export(filon_tab_cos)
+export(filon_tab_sin)
+useDynLib(rfilon, .registration = TRUE)

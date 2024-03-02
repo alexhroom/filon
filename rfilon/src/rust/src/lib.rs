@@ -11,9 +11,10 @@ extern crate filon as filon_rs;
 /// @param sin_coeff The coefficient of sin; 'm' in sin(mx)
 /// @export
 #[extendr(use_try_from = true)]
-fn filon_tab_sin(ftab: Vec<Complex<f64>>, a: f64, b: f64, sin_coeff: f64) -> Result<Complex<f64>> {
-    match filon_rs::filon_tab_sin(ftab, a, b, sin_coeff) {
-        Ok(result) => Ok(result),
+fn filon_tab_sin(ftab: Vec<f64>, a: f64, b: f64, sin_coeff: f64) -> Result<f64> {
+    let ftab_cplx: Vec<Complex<f64>> = ftab.iter().map(|x: &f64| Complex::from(x)).collect();
+    match filon_rs::filon_tab_sin(ftab_cplx, a, b, sin_coeff) {
+        Ok(result) => Ok(result.re),
         Err(error) => Err(Error::from(error.to_string()))
     }
 }
@@ -26,9 +27,10 @@ fn filon_tab_sin(ftab: Vec<Complex<f64>>, a: f64, b: f64, sin_coeff: f64) -> Res
 /// @param cos_coeff The coefficient of cos; 'm' in cos(mx)
 /// @export
 #[extendr(use_try_from = true)]
-fn filon_tab_cos(ftab: Vec<Complex<f64>>, a: f64, b: f64, cos_coeff: f64) -> Result<Complex<f64>> {
-    match filon_rs::filon_tab_cos(ftab, a, b, cos_coeff) {
-        Ok(result) => Ok(result),
+fn filon_tab_cos(ftab: Vec<f64>, a: f64, b: f64, cos_coeff: f64) -> Result<f64> {
+    let ftab_cplx: Vec<Complex<f64>> = ftab.iter().map(|x: &f64| Complex::from(x)).collect();
+    match filon_rs::filon_tab_cos(ftab_cplx, a, b, cos_coeff) {
+        Ok(result) => Ok(result.re),
         Err(error) => Err(Error::from(error.to_string()))
     }
 }
@@ -37,7 +39,7 @@ fn filon_tab_cos(ftab: Vec<Complex<f64>>, a: f64, b: f64, cos_coeff: f64) -> Res
 // This ensures exported functions are registered with R.
 // See corresponding C code in `entrypoint.c`.
 extendr_module! {
-    mod helloextendr;
+    mod rfilon;
     fn filon_tab_sin;
     fn filon_tab_cos;
 }
