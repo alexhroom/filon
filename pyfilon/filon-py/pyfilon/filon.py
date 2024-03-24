@@ -63,7 +63,7 @@ def filon_fun_cos(func: Callable, a: float, b: float, cos_coeff: float, mesh_siz
         The number of datapoints at which the function is evaluated, including the
         endpoints. Must be an odd integer greater than 1.
     cos_coeff: float
-        The coefficient of the sine function in the integrand; `m` in 'cos(mx)'
+        The coefficient of the cosine function in the integrand; `m` in 'cos(mx)'
 
     Returns
     -------
@@ -86,8 +86,8 @@ def filon_fun_iexp(func: Callable, a: float, b: float, exp_coeff: float, mesh_si
     num_points: int
         The number of datapoints at which the function is evaluated, including the
         endpoints. Must be an odd integer greater than 1.
-    sin_coeff: float
-        The coefficient of the sine function in the integrand; `m` in 'exp(imx)'
+    exp_coeff: float
+        The coefficient of the exponential function in the integrand; `m` in 'exp(imx)'
 
     Returns
     -------
