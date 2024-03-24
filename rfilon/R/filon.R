@@ -9,9 +9,9 @@
 #' @param sin_coeff The coefficient of the sine function in the integrand; `m` in 'sin(mx)'
 #' @return The estimation of the integral of f(x)sin(mx) over a, b.
 #' @export
-filon_fun_sin <- function(func, interval, num_points, sin_coeff){
-    linspace <- seq(from = a, to = b, length.out = num_points)
-    mesh <- lapply(linspace, func)
+filon_fun_sin <- function(func, a, b, num_points, sin_coeff){
+    linspace <- unlist(seq(from = a, to = b, length.out = num_points))
+    mesh <- unlist(lapply(linspace, func))
     return(filon_tab_sin(mesh, a, b, sin_coeff))
 }
 
@@ -26,9 +26,9 @@ filon_fun_sin <- function(func, interval, num_points, sin_coeff){
 #' @param sin_coeff The coefficient of the cosine function in the integrand; `m` in 'cos(mx)'
 #' @return The estimation of the integral of f(x)cos(mx) over a, b.
 #' @export
-filon_fun_cos <- function(func, interval, num_points, cos_coeff){
+filon_fun_cos <- function(func, a, b, num_points, cos_coeff){
     linspace <- seq(from = a, to = b, length.out = num_points)
-    mesh <- lapply(linspace, func)
+    mesh <- unlist(lapply(linspace, func))
     return(filon_tab_cos(mesh, a, b, cos_coeff))
 }
 
@@ -43,8 +43,8 @@ filon_fun_cos <- function(func, interval, num_points, cos_coeff){
 #' @param exp_coeff The coefficient of the exponential function in the integrand; `m` in 'exp(imx)'
 #' @return The estimation of the integral of f(x)exp(imx) over a, b.
 #' @export
-filon_fun_iexp <- function(func, interval, num_points, exp_coeff){
-    linspace <- seq(from = a, to = b, length.out = num_points)
-    mesh <- lapply(linspace, func)
+filon_fun_iexp <- function(func, a, b, num_points, exp_coeff){
+    linspace <- unlist(seq(from = a, to = b, length.out = num_points))
+    mesh <- unlist(lapply(linspace, func))
     return(complex(real = filon_tab_cos(mesh, a, b, exp_coeff), imaginary = filon_tab_sin(mesh, a, b, exp_coeff)))
 }
