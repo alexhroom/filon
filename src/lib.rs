@@ -128,10 +128,10 @@ pub fn filon_tab_cos(ftab: Vec<Complex<f64>>, a: f64, b: f64, cos_coeff: f64) ->
 ///     the coefficient of exp; 'm' in exp(imx)
 ///
 pub fn filon_tab_iexp(ftab: Vec<Complex<f64>>, a: f64, b: f64, exp_coeff: f64) -> Result<Complex<f64>, Error> {
-    let re = filon_tab_cos(ftab, a, b, exp_coeff)?;
+    let re = filon_tab_cos(ftab.clone(), a, b, exp_coeff)?;
     let im = filon_tab_sin(ftab, a, b, exp_coeff)?;
-    Ok(Complex::new(re, im))
-    }
+    let i = Complex::<f64>::new(0., 1.);
+    Ok(re + i*im)
 }
 
 fn linspace(a: &f64, b: &f64, num_steps: usize) -> Vec<f64>{
