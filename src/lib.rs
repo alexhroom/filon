@@ -116,6 +116,24 @@ pub fn filon_tab_cos(ftab: Vec<Complex<f64>>, a: f64, b: f64, cos_coeff: f64) ->
     Ok(output)
 }
 
+/// estimates the integral of a function multiplied by exp(imx)
+/// over the interval a, b.
+///
+///  Parameters:
+///  ftab: Vec<f64>
+///     the function to be integrated, tabulated over a mesh.
+///   a, b: f64
+///     the lower and upper limits of integration
+///   exp_coeff: f64
+///     the coefficient of exp; 'm' in exp(imx)
+///
+pub fn filon_tab_iexp(ftab: Vec<Complex<f64>>, a: f64, b: f64, exp_coeff: f64) -> Result<Complex<f64>, Error> {
+    let re = filon_tab_cos(ftab, a, b, exp_coeff)?;
+    let im = filon_tab_sin(ftab, a, b, exp_coeff)?;
+    Ok(Complex::new(re, im))
+    }
+}
+
 fn linspace(a: &f64, b: &f64, num_steps: usize) -> Vec<f64>{
 
     let step_size: f64 = (b - a) / (num_steps as f64 - 1.0);
